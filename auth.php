@@ -18,9 +18,7 @@ if ($conn->connect_error) {
 
 
 // Replace these values with your actual client credentials and callback URL
-$clientID = 'u-s4t2ud-8c46b919ff3287ee8c92d1a7f11ba1354697ae510aa0f9138f5c06f0404ed87f';
-$clientSecret = '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';
-$redirectUri = 'http://localhost/api42/auth.php';
+
 
 // Step 1: Redirect the user to the 42 authorization URL
 $authorizeUrl = 'https://api.intra.42.fr/oauth/authorize';
