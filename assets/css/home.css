@@ -1,0 +1,61 @@
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: arial;
+}
+.navserach
+{
+    
+}
+.searchbar
+{
+    position: absolute ;
+    background-color: black;
+    /* min-height: 200px; */
+    padding: 20px;
+    width: 70%;
+    margin: 30px 100px 0px 100px;
+   opacity: 0;
+    transition: 0.3s all;
+}
+.parentSearch
+{
+    display: flex;
+    background-color: rgb(126, 126, 126);
+    margin-bottom: 20px;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    transition: 0.3s all;
+}
+.parentSearch:hover
+{
+    background-color: rgb(0, 0, 0);
+    color: w;
+}
+.parentSearch:last-child {
+    margin-bottom: 0;
+}
+img
+{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+.name
+{
+    margin-left: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    margin-top: 15px;
+}
+.parentSearch:hover .name
+{
+    color: white;
+}
