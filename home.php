@@ -22,6 +22,24 @@ $conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+$sql2 = "SELECT users.id, users.firstName, users.lastName, users.email,users.image, MAX(score.score) as highest_score
+        FROM users
+        JOIN score ON users.id = score.id_user
+        GROUP BY users.id
+        ORDER BY highest_score DESC;";
+
+$stmt2 = $conn->prepare($sql2);
+$stmt2->execute();
+$result2 = $stmt2->get_result();
+
+$users2 = [];
+while($row2 = $result2->fetch_assoc()) {
+    $users2[] = $row2;
+}
+
+
+
 if (isset($_GET['search'])) {
     // The 'search' parameter is set in the GET request
     // You can now use $searchQuery in your code
@@ -49,7 +67,7 @@ if (isset($_GET['search'])) {
     }
 }
 
-
+// $conn->close();
 ?>
 <?php if(isset($_SESSION['user_data'])):?>
 <!DOCTYPE html>
@@ -93,9 +111,23 @@ if (isset($_GET['search'])) {
         </div>
     </div>
     <div class="allPage">
-        <form action="logout.php" method="get">
+        <!-- <form action="logout.php" method="get">
             <input type="submit" value="Logout">
-        </form>
+        </form> -->
+        <div class="conatainerTableScore">
+            <div class="titleTable">
+                <p>All Users Top score</p>
+            </div>
+            <div class="containerUsers">
+            <?php foreach($users2 as $user): ?>
+                <div class="containerEachUser">
+                    <div class="containerImg"><img src=<?php echo $user['image'] ?> alt="" srcset=""></div>
+                    <div class="containerName"><p><?php echo $user['firstName'] ." ". $user['lastName'] ?> </p></div>
+                    <div class="containerScore"><p><?php echo $user['highest_score'] ?></p></div>
+                </div>
+            <?php endforeach; ?>
+            </div>
+        </div>
     </div>
    
     
