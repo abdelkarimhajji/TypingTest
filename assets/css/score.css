@@ -35,7 +35,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .navserach .part1 .containerInput
 {
    width: 100%;
-   background-color: #1d212a;
+   background-color: red;
    /* position: absolute; */
    
 }
@@ -150,7 +150,64 @@ input[type="search"]::-webkit-search-cancel-button {
     background-color: black;
     color: white;
 }
-
+.searchbar
+{
+    position: absolute;
+    background-color: #1d212a;
+    /* min-height: 200px; */
+    padding: 10px;
+    width: 50%;
+    margin: 20px 100px 0px 100px;
+    opacity: 0;
+    transition: 0.3s all;
+    border-radius: 10px;
+    border: 0.5px solid rgba(168, 168, 168, 0.314);
+}
+.parentSearch
+{
+    display: flex;
+    /* background-color: gray; */
+    margin-bottom: 5px;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    transition: 0.3s all;
+    border-radius: 10px;
+    color: white;
+}
+.parentSearch:hover
+{
+    background-color: #121419;
+    color: white;
+}
+.parentSearch:last-child {
+    margin-bottom: 0;
+}
+.img
+{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    /* margin-left: 200px; */
+}
+.name
+{
+    margin-left: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    margin-top: 12px;
+}
+.parentSearch:hover .name
+{
+    color: white;
+}
+.noUser
+{
+    padding: 10px;
+}
 .allPage
 {
     background-color: #121419;
@@ -161,29 +218,81 @@ input[type="search"]::-webkit-search-cancel-button {
     justify-content: center;
     align-items: center;
 }
-.containerChoices
+.conatainerTableScore
 {
     width: 30%;
-    height: 400px;
+    height: 650px;
     background-color: #1d212a;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    border: 0.5px solid rgba(168, 168, 168, 0.314);
+}
+.titleTable
+{
+    height: 70px;
+    background-color: #121419;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 10px; */
+   
+}
+.titleTable p
+{
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+.containerUsers
+{
+    height: 100%;
+    width: 100%;
+    /* background-color: red; */
+    overflow-y: scroll;
+}
+.containerEachUser
+{
+    height: 65px;
+    width: 100%;
+    background-color: red;
+    display: flex;
+    cursor: pointer;
+    background-color: #1d212a;
+    transition: 0.5s all;
+    color: white;
+}
+.containerEachUser:hover
+{
+    background-color: #121419;
+}
+.containerImg
+{
+    width: 15%;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
-.containerButton
+
+.containerImg img
 {
-    width: 80%;
-    height: 55px;
-    background-color: #121419;
-    border-radius: 10px;
+    width: 44px;
+    border-radius: 50%;
+}
+
+.containerName
+{
+    width: 65%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
+}
+
+.containerScore
+{
+    width: 20%;
+    display: flex;
+    justify-self: center;
+    align-items: center;
 }

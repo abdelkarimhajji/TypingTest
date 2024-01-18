@@ -1,12 +1,6 @@
 <?php
 session_start();
-// print_r($_SESSION['user_data']); 
 $sessionData = $_SESSION['user_data'];
-// echo $sessionData['id'] . "<br>" .
-// $sessionData['first_name'] . "<br>" .
-// $sessionData['last_name'] . "<br>" .
-// $sessionData['email'] . "<br>" .
-// $sessionData['image']['link'];
 
 
 // Database connection
@@ -23,7 +17,51 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$conn->close();
+$sql2 = "SELECT users.id, users.firstName, users.lastName, users.email,users.image, MAX(score.score) as highest_score
+        FROM users
+        JOIN score ON users.id = score.id_user
+        GROUP BY users.id
+        ORDER BY highest_score DESC;";
+
+$stmt2 = $conn->prepare($sql2);
+$stmt2->execute();
+$result2 = $stmt2->get_result();
+
+$users2 = [];
+while($row2 = $result2->fetch_assoc()) {
+    $users2[] = $row2;
+}
+
+
+
+if (isset($_GET['search'])) {
+    // The 'search' parameter is set in the GET request
+    // You can now use $searchQuery in your code
+
+    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        // This is an AJAX request
+        if (isset($_GET['search'])) {
+            $searchQuery = $_GET['search'];
+            $sql = "SELECT * FROM users WHERE firstName LIKE ? OR lastName LIKE ? LIMIT 7";
+            $stmt = $conn->prepare($sql);
+            $param = "%{$searchQuery}%";
+            $stmt->bind_param("ss", $param, $param);
+            $stmt->execute();
+            $result = $stmt->get_result();
+    
+            $users = [];
+            while($row = $result->fetch_assoc()) {
+                $users[] = $row;
+            }
+    
+            echo json_encode($users);
+            $conn->close();
+            exit; // Stop the script here
+        }
+    }
+}
+
+// $conn->close();
 ?>
 <?php if(isset($_SESSION['user_data'])):?>
 <!DOCTYPE html>
@@ -31,19 +69,19 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/score.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <title>Test Typing</title>
 </head>
 <body>
-<div class="navserach">
+    <div class="navserach">
         <div class="part1">
             <div class="containerIcone">
-                <!-- <i class="fas fa-search"></i> -->
+                <i class="fas fa-search"></i>
             </div>
             <div class="containerInput">
-                <!-- <input type="search" id="searchInput" placeholder="Search ..."> -->
+                <input type="search" id="searchInput" placeholder="Search ...">
             </div>
         </div>
         <div class="part2">
@@ -54,21 +92,40 @@ $conn->close();
     <div class="containerAlert">
         <div class="alert">
             <ul>
-                <a href="score.php"><li>Score</li></a>
-                <a href="#"><li>Bord</li></a>
-                <a href="#"><li>Play</li></a>
+                <li>Score</li>
+                <li>Bord</li>
+                <a href="home.php"><li>Play</li></a>
                 <a href="logout.php?data=value"><li>Log out</li></a>
             </ul>
         </div>
     </div>
-    <div class="allPage">
-        <div class="containerChoices">
-            <div class="containerIcon"><i class="fas fa-keyboard"></i></div>
-            <div class="containerButton"><p>Play</p></div>
-            <div class="containerButton"><p>See my score</p></div>
-            <div class="containerButton"><p>Board</p></div>
-        </div>  
+    <div class="searchbar">
+         <div class="parentSearch" >
+            
+        </div>
     </div>
+    <div class="allPage">
+        <!-- <form action="logout.php" method="get">
+            <input type="submit" value="Logout">
+        </form> -->
+        <div class="conatainerTableScore">
+            <div class="titleTable">
+                <p>All Users Top score</p>
+            </div>
+            <div class="containerUsers">
+            <?php foreach($users2 as $user): ?>
+                <div class="containerEachUser">
+                    <div class="containerImg"><img src=<?php echo $user['image'] ?> alt="" srcset=""></div>
+                    <div class="containerName"><p><?php echo $user['firstName'] ." ". $user['lastName'] ?> </p></div>
+                    <div class="containerScore"><p><?php echo $user['highest_score'] ?></p></div>
+                </div>
+            <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+   
+    
+<?php $conn->close(); ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
@@ -84,7 +141,7 @@ $(document).ready(function(){
         $('.searchbar').css('transition', '0.3s all');
         $('.searchbar').css('opacity', '1');
       $.ajax({
-        url: 'home.php',
+        url: 'score.php',
         type: 'GET',
         data: { search: searchQuery},
         success: function(data){
