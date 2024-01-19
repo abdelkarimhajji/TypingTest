@@ -1,6 +1,10 @@
 <?php
 
 session_start();
-session_destroy();
+if(isset($_GET['data'])) {
+    session_destroy();
+    header('Location: index.php');
+}
+
 header('Location: index.php');
 ?>

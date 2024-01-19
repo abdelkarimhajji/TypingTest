@@ -83,7 +83,7 @@ if (isset($_GET['search'])) {
                 <li>Score</li>
                 <li>Bord</li>
                 <li>Play</li>
-                <li>Log out</li>
+                <a href="logout.php?data=value"><li>Log out</li></a>
             </ul>
         </div>
     </div>
@@ -147,19 +147,34 @@ $(document).ready(function(){
     }
   });
 });
-
+let valid = 1;
 function displayAlert()
 {
     
-    var display = $('.alert').css('display');
+    let display = $('.alert').css('display');
     if (display == 'none') {
-      
+        valid = 0;
         $('.alert').css('display', 'block');
     } else if (display == 'block') {
        
         $('.alert').css('display', 'none');
     }
 }
+
+
+// console.log(valid);
+$(window).click(function() {
+let display = $('.alert').css('display');
+if (display == 'block' && valid == 1) {
+        if (display == 'block') {
+            // alert('hello');
+            $('.alert').css('display', 'none');
+        }  
+    }
+});  // Closing brace was missing here
+setInterval(function() {
+    valid = 1;
+}, 50);
 </script>
 </body>
 </html>
