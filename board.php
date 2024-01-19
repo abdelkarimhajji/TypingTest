@@ -69,7 +69,7 @@ if (isset($_GET['search'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/score.css">
+    <link rel="stylesheet" href="assets/css/board.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <title>Test Typing</title>
@@ -141,7 +141,7 @@ $(document).ready(function(){
         $('.searchbar').css('transition', '0.3s all');
         $('.searchbar').css('opacity', '1');
       $.ajax({
-        url: 'score.php',
+        url: 'board.php',
         type: 'GET',
         data: { search: searchQuery},
         success: function(data){
