@@ -43,38 +43,56 @@ if (isset($_GET['search'])) {
             }
     
             echo json_encode($users);
+            $conn->close();
             exit; // Stop the script here
         }
     }
 }
-// Select all users from the database
+
 
 
 
 
 ?>
+<?php if(isset($_SESSION['user_data'])):?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/home.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <title>Test Typing</title>
 </head>
 <body>
     <div class="navserach">
-
+        <div class="part1">
+            <div class="containerIcone">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="containerInput">
+                <input type="search" id="searchInput" placeholder="Search ...">
+            </div>
+        </div>
+        <div class="part2">
+            <p><?php  echo $sessionData['first_name'] ." ". $sessionData['last_name']; ?></p>
+            <img src=<?php echo $sessionData['image']['link'] ?> alt="" srcset="">
+        </div>
     </div>
-    <input type="search" id="searchInput">
   
     <div class="searchbar">
          <div class="parentSearch" >
             
         </div>
     </div>
-        
-   
+    <div class="allPage">
 
+    </div>
+   
+    <form action="logout.php" method="get">
+        <input type="submit" value="Logout">
+    </form>
 <?php $conn->close(); ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -127,3 +145,6 @@ $(document).ready(function(){
 </script>
 </body>
 </html>
+<?php else: ?>
+    <?php header('Location: index.php'); ?>
+<?php endif; ?>
