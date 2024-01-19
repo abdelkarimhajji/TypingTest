@@ -50,9 +50,6 @@ if (isset($_GET['search'])) {
 }
 
 
-
-
-
 ?>
 <?php if(isset($_SESSION['user_data'])):?>
 <!DOCTYPE html>
@@ -77,27 +74,35 @@ if (isset($_GET['search'])) {
         </div>
         <div class="part2">
             <p><?php  echo $sessionData['first_name'] ." ". $sessionData['last_name']; ?></p>
-            <img src=<?php echo $sessionData['image']['link'] ?> alt="" srcset="">
+            <img src=<?php echo $sessionData['image']['link'] ?> alt=<?php  echo $sessionData['first_name'] ?> onclick="displayAlert()" >
         </div>
     </div>
-  
+    <div class="containerAlert">
+        <div class="alert">
+            <ul>
+                <li>Score</li>
+                <li>Bord</li>
+                <li>Play</li>
+                <li>Log out</li>
+            </ul>
+        </div>
+    </div>
     <div class="searchbar">
          <div class="parentSearch" >
             
         </div>
     </div>
     <div class="allPage">
-
+        <form action="logout.php" method="get">
+            <input type="submit" value="Logout">
+        </form>
     </div>
    
-    <form action="logout.php" method="get">
-        <input type="submit" value="Logout">
-    </form>
+    
 <?php $conn->close(); ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    
-   
+
 $(document).ready(function(){
   $('#searchInput').on('input', function(){
     var searchQuery = $(this).val();
@@ -130,7 +135,7 @@ $(document).ready(function(){
             {
                 var html = '';
                 html += '<div class="parentSearch" >';
-                html += '<p>no users</p>';
+                html += '<p class="noUser">no users</p>';
                 html += '</div>';
                 $('.searchbar').html(html);
             }
@@ -142,6 +147,19 @@ $(document).ready(function(){
     }
   });
 });
+
+function displayAlert()
+{
+    
+    var display = $('.alert').css('display');
+    if (display == 'none') {
+      
+        $('.alert').css('display', 'block');
+    } else if (display == 'block') {
+       
+        $('.alert').css('display', 'none');
+    }
+}
 </script>
 </body>
 </html>

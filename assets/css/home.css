@@ -13,20 +13,25 @@ input[type="search"]::-webkit-search-cancel-button {
 .navserach
 {
     height: 55px;
+    width: 100%;
     display: flex;
     background-color: black;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    z-index: 1;  
+    position: fixed;
+    /* border-bottom: 0.5px solid white; */
 }
 .navserach .part1
 {
     display: flex;
     width: 80%;
+    /* z-index: 20000px; */
 }
 .navserach .part1 .containerInput
 {
    width: 100%;
    background-color: red;
+   /* position: absolute; */
    
 }
 .navserach .part1 .containerInput input
@@ -40,6 +45,8 @@ input[type="search"]::-webkit-search-cancel-button {
     padding-left: 20px;
     -webkit-appearance: none;
     color: white;
+    /* position: absolute; */
+    /* border-bottom: 0.5px solid white; */
 }
 .navserach .part1 .containerInput input::placeholder {
     color: rgb(149, 148, 148);
@@ -83,6 +90,49 @@ input[type="search"]::-webkit-search-cancel-button {
     color: white;
     text-align: center;
 }
+.containerAlert
+{
+    width: 100%;
+    min-height: 100px;
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    /* background-color: black; */
+    /* padding-right: 20px; */
+}
+.alert
+{
+    width: 200px;
+    min-height: 150px;
+    display: none;
+    background-color: white;
+    margin-top: 70px;
+    margin-right: 13px;
+    transition: 0.5s all;
+    box-shadow: rgba(149, 157, 165, 0.5) 0px 5px 24px;
+    border-radius: 10px;
+    position: fixed;
+}
+.alert li
+{
+    list-style: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14.5px;
+    transition: 0.5s all;
+    text-align: center;
+    font-weight: bold;
+}
+.alert li:first-child
+{
+    border-bottom: 0.5px solid rgb(149, 148, 148);
+}
+.alert li:hover
+{
+    background-color: black;
+    color: white;
+}
 .searchbar
 {
     position: absolute;
@@ -90,8 +140,8 @@ input[type="search"]::-webkit-search-cancel-button {
     /* min-height: 200px; */
     padding: 20px;
     width: 70%;
-    margin: 15px 100px 0px 100px;
-   opacity: 0;
+    margin: 60px 100px 0px 100px;
+    opacity: 0;
     transition: 0.3s all;
     border-radius: 10px;
 }
@@ -134,4 +184,15 @@ input[type="search"]::-webkit-search-cancel-button {
 .parentSearch:hover .name
 {
     color: white;
+}
+.noUser
+{
+    padding: 10px;
+}
+.allPage
+{
+    background-color: black;
+    height: 100vh;
+    /* margin-top: -50px;     */
+    /* z-index: -2; */
 }
