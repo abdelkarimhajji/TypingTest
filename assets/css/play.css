@@ -1,3 +1,12 @@
+*
+{
+    /* margin: 0;
+    padding: 0; */
+    box-sizing: border-box;
+    font-family: arial;
+    text-decoration: none;
+    
+}
 :root {
     --mainColor: #00FFFF;
     --secondaryColor: #9900FF;
@@ -193,4 +202,149 @@ body {
         width: 80vw;
         height: 45vh;
     }
+}
+
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+.navserach
+{
+    height: 55px;
+    width: 100%;
+    display: flex;
+    background-color: #1d212a;
+   top: 0;
+    z-index: 1;  
+    position: fixed;
+    margin-left: -10px;
+    /* border-bottom: 0.5px solid white; */
+}
+.navserach .part1
+{
+    display: flex;
+    width: 80%;
+    /* z-index: 20000px; */
+}
+.navserach .part1 .containerInput
+{
+   width: 100%;
+   background-color: #1d212a;
+   /* position: absolute; */
+   
+}
+.navserach .part1 .containerInput input
+{
+    width: 100%;
+    height: 55px;
+    outline: none;
+    border: none;
+    background-color: #1d212a;
+    font-size: 16px;
+    padding-left: 20px;
+    -webkit-appearance: none;
+    color: white;
+    /* position: absolute; */
+    /* border-bottom: 0.5px solid white; */
+}
+.navserach .part1 .containerInput input::placeholder {
+    color: rgb(149, 148, 148);
+}
+.navserach .part1 .containerIcone
+{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navserach .part1 .containerIcone i
+{
+    color: white;
+    font-size: 25px;
+}
+.navserach .part1 i
+{
+    color: white;
+}
+.navserach .part2
+{
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* background-color: white; */
+    padding-right: 20px;
+}
+.navserach .part2 img
+{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.navserach .part2 p
+{
+    margin-right: 30px;
+    color: white;
+    text-align: center;
+}
+.containerAlert
+{
+    width: 100%;
+    min-height: 100px;
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    /* background-color: black; */
+    /* padding-right: 20px; */
+}
+.alert
+{
+    width: 200px;
+    min-height: 100px;
+    display: none;
+    background-color: #1d212a;
+    margin-top: 0px;
+    margin-right: 13px;
+    transition: 0.5s all;
+    border-radius: 10px;
+    position: fixed;
+}
+.alert ul
+{
+    margin: 0;
+    padding: 0;
+}
+.alert li
+{
+    list-style: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14.5px;
+    transition: 0.5s all;
+    text-align: center;
+    color: white;
+}
+
+.alert  a
+{
+    color: white;
+    background-color: #1d212a;
+}
+.alert a:first-child
+{
+    border-radius:9px 9px 0 0;
+}
+.alert a:last-child
+{
+    border-radius:0px 0px 9px 9px;
+    font-weight: bold;
+    font-size: 15px;
+}
+.alert a:hover
+{
+    background-color: red;
+    color: white;
 }

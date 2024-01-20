@@ -1,8 +1,9 @@
 <?php 
 session_start();
-
+$sessionData = $_SESSION['user_data'];
 
 ?>
+<?php if(isset($_SESSION['user_data'])):?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,7 @@ session_start();
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono&display=swap"> -->
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap"> -->
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"> -->
+
 
     <link rel="stylesheet" href="assets/css/play.css">
     <title>Document</title>
@@ -33,6 +35,32 @@ session_start();
             </svg> 
         </a> 
     </div> -->
+    <!-- i add my code  -->
+    <div class="navserach">
+        <div class="part1">
+            <div class="containerIcone">
+                <!-- <i class="fas fa-search"></i> -->
+            </div>
+            <div class="containerInput">
+                <!-- <input type="search" id="searchInput" placeholder="Search ..."> -->
+            </div>
+        </div>
+        <div class="part2">
+            <p><?php  echo $sessionData['first_name'] ." ". $sessionData['last_name']; ?></p>
+            <img src=<?php echo $sessionData['image']['link'] ?> alt=<?php  echo $sessionData['first_name'] ?> onclick="displayAlert()" >
+        </div>
+    </div>
+    <div class="containerAlert">
+        <div class="alert">
+            <ul>
+                <a href="score.php"><li>Score</li></a>
+                <a href="board.php"><li>Bord</li></a>
+                <a href="home.php"><li>Play</li></a>
+                <a href="logout.php?data=value"><li>Log out</li></a>
+            </ul>
+        </div>
+    </div>
+    <!-- finished -->
     <div id="placeholder">
         <h2 id="timeHeader">01:00</h2>
         <!-- needs to display the current wpm -->
@@ -465,5 +493,38 @@ session_start();
         </div>                                                              
     </div>
     <script src="assets/js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function displayAlert()
+        {
+            
+            let display = $('.alert').css('display');
+            if (display == 'none') {
+                valid = 0;
+                $('.alert').css('display', 'block');
+            } else if (display == 'block') {
+            
+                $('.alert').css('display', 'none');
+            }
+        }
+
+
+        // console.log(valid);
+        $(window).click(function() {
+        let display = $('.alert').css('display');
+        if (display == 'block' && valid == 1) {
+                if (display == 'block') {
+                    // alert('hello');
+                    $('.alert').css('display', 'none');
+                }  
+            }
+        });  // Closing brace was missing here
+        setInterval(function() {
+            valid = 1;
+        }, 50);
+    </script>
 </body>
 </html>
+<?php else: ?>
+    <?php header('Location: index.php'); ?>
+<?php endif; ?>
