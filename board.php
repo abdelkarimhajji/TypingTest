@@ -92,8 +92,8 @@ if (isset($_GET['search'])) {
     <div class="containerAlert">
         <div class="alert">
             <ul>
-                <li>Score</li>
-                <li>Bord</li>
+                <a href="score.php"><li>Score</li></a>
+                <a href="#"><li>Bord</li></a>
                 <a href="home.php"><li>Play</li></a>
                 <a href="logout.php?data=value"><li>Log out</li></a>
             </ul>
