@@ -56,7 +56,7 @@ $conn->close();
             <ul>
                 <a href="score.php"><li>Score</li></a>
                 <a href="board.php"><li>Bord</li></a>
-                <a href="#"><li>Play</li></a>
+                <a href=""><li>Play</li></a>
                 <a href="logout.php?data=value"><li>Log out</li></a>
             </ul>
         </div>
@@ -64,7 +64,7 @@ $conn->close();
     <div class="allPage">
         <div class="containerChoices">
             <div class="containerIcon"><i class="fas fa-keyboard"></i></div>
-            <a href="" class="containerButton"><div><p>Play</p></div></a>
+            <a href="play.php" class="containerButton"><div><p>Play</p></div></a>
             <a href="score.php" class="containerButton"><div><p>See my score</p></div></a>
             <a href="board.php" class="containerButton"><div><p>Board</p></div></a>
             <a href="logout.php?data=value" class="containerButton"><div><p>Log out</p></div></a>

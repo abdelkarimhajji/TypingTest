@@ -1,0 +1,196 @@
+:root {
+    --mainColor: #00FFFF;
+    --secondaryColor: #9900FF;
+    --backgroundColor: #121419;
+    --successColor:#00CC66;
+    --errorColor:#FF6666;
+}
+
+body {
+    min-height: 80vh;
+    height: 80vh;
+    background-color: var(--backgroundColor);
+    color: #ffffff80;
+    font-family: 'Roboto Mono', sans-serif;
+    font-style: normal;
+}
+
+#placeholder {
+    margin: 80px auto;
+    /* height: 60vh; */
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#timeHeader {
+    font-size: 1.2rem;
+    text-align: center;
+    color: white;
+}
+
+#parag {
+    text-align: center;
+    font-size: 1.4rem;
+    word-spacing: 0.2rem;
+    /* letter-spacing: 0.1rem; */
+}
+
+.highlighted {
+    color: white;
+}
+
+.correct {
+    color: var(--successColor);
+    text-decoration: underline;
+    text-decoration-color: var(--successColor);
+    /* text-decoration-thickness: 0.2rem;
+    text-underline-offset: 0.5rem; */
+}
+
+.wrong {
+    color: var(--errorColor);
+    text-decoration: underline;
+    text-decoration-color: var(--errorColor);
+    /* text-decoration-thickness: 0.2rem;
+    text-underline-offset: 0.5rem; */
+    background-color: #ff66664f;
+}
+
+.span {
+    opacity: 0.5;
+    display: none;
+    transition: 1s ease-in-out;
+}
+
+.visible {
+    opacity: 1;
+    display: inline;
+}
+
+/* #logoPlaceholder {
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+}
+
+#logoSvg {
+    margin-left: 10px;
+} */
+
+/* #schoolName {
+    font-style: 'Roboto Mono';
+    font-weight: 500;
+    letter-spacing: 0.5rem;
+    animation: 4s changeColor infinite linear;
+} */
+
+#errorSvg {
+    display: none;
+    height: 70vh;
+}
+
+#flyingBalloon {
+    animation: balloonUpDown 6s infinite linear;
+}
+
+#leftPlanets path {
+    animation: leftPlanets 6s infinite linear;
+}
+
+#rightPlanets path {
+    animation: rightPlanets 6s infinite linear;
+}
+
+#keyboardSvg {
+    margin-top: 30px;
+    width: 40vw;
+    height: 35vh;
+}
+
+/* @keyframes changeColor {
+    0% {
+        fill: #ffffffbf;
+    }
+    25% {
+        fill: #ffffff8e;
+    }
+    50% {
+        fill: #00cc66aa;
+    }
+    75% {
+        fill: #ffffff8e;
+    }
+    100% {
+        fill: #ffffffbf;
+    }
+}  */
+
+@keyframes leftPlanets {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    25% {
+        transform: translateY(-2px) translateX(-6px);
+    }
+    50% {
+        transform: translateY(-4px)translateX(-12px);
+        fill: var(--secondaryColor);
+    }
+    75% {
+        transform: translateY(-2px) translateX(-6px);
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+@keyframes rightPlanets {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    25% {
+        transform: translateY(-2px) translateX(6px);
+    }
+    50% {
+        transform: translateY(-4px)translateX(12px);
+        fill: var(--secondaryColor);
+    }
+    75% {
+        transform: translateY(-2px) translateX(6px);
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+@keyframes balloonUpDown {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    25% {
+        transform: translateY(-20px) translateX(2px);
+    }
+    50% {
+        transform: translateY(-30px)translateX(4px);
+    }
+    75% {
+        transform: translateY(-20px) translateX(2px);
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    #parag {
+        font-size: 1.4rem;
+    }
+    #keyboardSvg {
+        margin-top: 10px;
+        width: 80vw;
+        height: 45vh;
+    }
+}
